@@ -1,2 +1,2 @@
 # dotfiles
-My personal dotfiles to make anywhere feel like $HOME
+My personal dotfiles to make anywhere feel like `$HOME`
