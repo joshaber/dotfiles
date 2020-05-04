@@ -7,6 +7,7 @@
 ###############
 
 # Source other files
+source ~/bashprompt.sh
 
 # Senstive functions which are not pushed to Github
 # It contains GOPATH, some functions, aliases etc...
