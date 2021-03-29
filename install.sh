@@ -2,4 +2,4 @@ set -x
 
 cd ~/
 
-echo "" >> ~/.bashrc
+echo "test" >> ~/.bashrc
