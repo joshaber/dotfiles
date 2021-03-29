@@ -2,4 +2,5 @@ set -x
 
 cd ~/
 
-echo "test" >> ~/.bashrc
+echo "" >> ~/.bashrc
+echo ". ~/dotfiles/bashprompt.sh" >> ~/.bashrc
