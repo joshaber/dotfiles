@@ -7,7 +7,7 @@ SCRIPTSETUP="$0"
 
 echo $SCRIPTSETUP
 DOTFILESDIRREL=$(dirname $SCRIPTSETUP)
-cd $DOTFILESDIRREL/..
+cd $DOTFILESDIRREL
 DOTFILESDIR=$(pwd -P)
 
 source .bash_profile
