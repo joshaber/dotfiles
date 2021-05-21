@@ -1,3 +1,5 @@
+#!/bin/sh
+
 set -x
 
 git config --global core.editor "vim"
@@ -10,4 +12,4 @@ DOTFILESDIRREL=$(dirname $SCRIPTSETUP)
 cd $DOTFILESDIRREL
 DOTFILESDIR=$(pwd -P)
 
-source .bash_profile
+source $DOTFILESDIR/.bash_profile
