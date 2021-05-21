@@ -1,1 +1,1 @@
-export $IAMJOSHABER=true
+export IAMJOSHABER=true
