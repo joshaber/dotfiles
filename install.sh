@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -x
 
@@ -13,3 +13,7 @@ cd $DOTFILESDIRREL
 DOTFILESDIR=$(pwd -P)
 
 source $DOTFILESDIR/.bash_profile
+
+if [[ $(git config --get remote.origin.url) = "https://github.com/github/github" ]]; then
+  export IS_GH_GH=true
+fi
