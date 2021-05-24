@@ -5,6 +5,8 @@ set -x
 git config --global core.editor "vim"
 touch ~/gotmydots.txt
 
+pwd -P
+
 SCRIPTSETUP="$0"
 
 echo $SCRIPTSETUP
