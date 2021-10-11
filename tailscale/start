@@ -1,0 +1,26 @@
+if [[ -z "${TAILSCALE_AUTHKEY}" ]]; then
+  echo "*** TAILSCALE_AUTHKEY not set, not joining Tailscale VPN."
+  echo "***"
+  echo "*** To enable Tailscale:"
+  echo "*** 1. Go to https://login.tailscale.com/admin/settings/authkeys"
+  echo "*** 2. Create a new ephemeral key"
+  echo "*** 3. Add it as the TAILSCALE_AUTHKEY Codespace secret and enable it for the repository."
+else
+  # Enable IPv6 iptables
+  sudo update-alternatives --set ip6tables /usr/sbin/ip6tables-nft
+
+  # Install tailscale
+  curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.gpg | sudo apt-key add -
+  curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.list | sudo tee /etc/apt/sources.list.d/tailscale.list
+  sudo apt-get update
+  sudo apt-get install tailscale
+
+  # Start the daemon (we should do this with process management instead)
+  sudo tailscaled &> /dev/null &
+
+  # We should use $GITHUB_REPOSITORY once it's available
+  DefaultHostname=$(ls /workspaces)
+  sudo tailscale up --reset --authkey=$TAILSCALE_AUTHKEY --hostname="$DefaultHostname" --accept-routes
+
+  ./tailscale/update-hosts
+fi

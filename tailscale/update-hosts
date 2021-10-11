@@ -1,0 +1,50 @@
+#!/bin/bash
+
+HOSTS_PREFIX="### Tailscale hosts (automatically generated)"
+
+function add_host() {
+  TsHostname=$1
+  Ip=$(tailscale ip -6 $TsHostname)
+  retVal=$?
+  if [ $retVal -ne 0 ]; then
+      echo "*** No Tailscale host \"$TsHostname\" found!"
+  else
+    Hostname=${2:-"$TsHostname"}
+    add_host_mapping $Hostname $Ip;
+  fi
+}
+
+function add_host_mapping() {
+  Source=$1
+  Destination=$2
+
+  Line=$(printf "%s\t%s\n" "$Destination" "$Source")
+  sudo -- sh -c -e "echo '$Line' >> /etc/hosts";
+
+  echo "*** Added $Source as $Destination";
+}
+
+function remove_existing_hosts() {
+  sed "/$HOSTS_PREFIX/,\$d" /etc/hosts > /tmp/new-hosts;
+  sudo cp /tmp/new-hosts /etc/hosts;
+  sudo rm /tmp/new-hosts;
+}
+
+function add_default_hosts() {
+  if [ -n "$(grep "$HOSTS_PREFIX" /etc/hosts)" ]
+  then
+      echo "Removing old hosts...";
+      remove_existing_hosts;
+  fi
+
+  sudo -- sh -c -e "echo '$HOSTS_PREFIX\n' >> /etc/hosts";
+
+  Hosts=$(tailscale status --json | jq -r ".Peer[].DNSName" | sed 's/\..*//')
+  for Host in $Hosts
+  do
+    add_host $Host
+  done
+}
+
+add_default_hosts
+add_host "github" "github.localhost"
