@@ -12,3 +12,5 @@ if [[ -d "/workspaces/github" ]]; then
   cd "/workspaces/github"
   bin/setup-codespaces
 fi
+
+ln -s /workspaces/.codespaces/.persistedshare/dotfiles/bin /home/codespace/.local/bin
