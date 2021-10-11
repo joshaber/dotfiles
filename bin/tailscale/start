@@ -22,5 +22,6 @@ else
   DefaultHostname=$(ls /workspaces)
   sudo tailscale up --reset --authkey=$TAILSCALE_AUTHKEY --hostname="$DefaultHostname" --accept-routes
 
-  ./tailscale/update-hosts
+  TailscaleDir=$(dirname $0)
+  $TailscaleDir/update-hosts
 fi
