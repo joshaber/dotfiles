@@ -7,7 +7,7 @@ touch ~/gotmydots.txt
 
 source .bash_profile
 
-export PATH="$(pwd -P):$PATH"
+export PATH="$(pwd -P)/bin:$PATH"
 
 if [[ -d "/workspaces/github" ]]; then
   export IS_GH_GH=true
