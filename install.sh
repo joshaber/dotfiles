@@ -26,10 +26,16 @@ for DOTFILE in .??*; do
   fi
 done
 
+HOMEDOTFILES="$HOME/.dotfiles"
+if [ "$DOTFILESDIR" != "$HOMEDOTFILES" ]
+then
+  ln -sf "$DOTFILESDIR" "$HOMEDOTFILES"
+fi
+
+source $DOTFILESDIR/.bash_profile
+
 git config --global core.editor "vim"
 touch ~/gotmydots.txt
-
-source .bash_profile
 
 if [[ -d "/workspaces/github" ]]; then
   export IS_GH_GH=true

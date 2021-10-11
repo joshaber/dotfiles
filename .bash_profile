@@ -1,2 +1,2 @@
 export IAMJOSHABER=true
-export PATH="$0/bin:$PATH"
+export PATH="$PATH:$HOME/.dotfiles/bin"
