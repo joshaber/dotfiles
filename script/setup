@@ -7,11 +7,8 @@ DOTFILESDIRREL="$(dirname "$0")"
 cd $DOTFILESDIRREL/..
 DOTFILESDIR="$(pwd -P)"
 
-HOMEDOTFILES="$HOME/.dotfiles"
-ln -sf "$DOTFILESDIR" "$HOMEDOTFILES"
+ln -sf "$DOTFILESDIR" "$HOME/.dotfiles"
 cat "$DOTFILESDIR/.bashrc" >> "$HOME/.bashrc"
-
-git config --global core.editor "vim"
 
 if [[ -d "/workspaces/github" ]]; then
   export IS_GH_GH=true
