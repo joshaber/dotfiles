@@ -32,7 +32,7 @@ then
   ln -sf "$DOTFILESDIR" "$HOMEDOTFILES"
 fi
 
-source $DOTFILESDIR/.bash_profile
+source $DOTFILESDIR/.bashrc
 
 git config --global core.editor "vim"
 touch ~/gotmydots.txt
