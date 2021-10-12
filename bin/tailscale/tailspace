@@ -1,0 +1,4 @@
+#!/bin/bash
+
+TailscaleDir=$(dirname $0)
+$TailscaleDir/$@
