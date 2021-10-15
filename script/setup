@@ -13,5 +13,5 @@ cat "$DOTFILESDIR/.bashrc" >> "$HOME/.bashrc"
 if [[ -d "/workspaces/github" ]]; then
   export IS_GH_GH=true
   cd "/workspaces/github"
-  # bin/setup-codespaces
+  bin/setup-codespaces
 fi
