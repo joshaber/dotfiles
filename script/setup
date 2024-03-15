@@ -13,9 +13,3 @@ cat "$DOTFILESDIR/.bashrc" >> "$HOME/.bashrc"
 if [[ $NGROK_AUTHTOKEN ]]; then
   ngrok config add-authtoken $NGROK_AUTHTOKEN || echo "ngrok auth config failed"
 fi
-
-if [[ -d "/workspaces/github" ]]; then
-  export IS_GH_GH=true
-  cd "/workspaces/github"
-#  bin/setup-codespaces
-fi
