@@ -11,5 +11,6 @@ ln -sf "$DOTFILESDIR" "$HOME/.dotfiles"
 cat "$DOTFILESDIR/.bashrc" >> "$HOME/.bashrc"
 
 if [[ $NGROK_AUTHTOKEN ]]; then
-  ngrok config add-authtoken $NGROK_AUTHTOKEN || echo "ngrok auth config failed"
+  # ngrok 3 vs. ngrok 2
+  ngrok config add-authtoken $NGROK_AUTHTOKEN || ngrok authtoken $NGROK_AUTHTOKEN || echo "ngrok auth config failed"
 fi
